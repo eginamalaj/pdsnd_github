@@ -1,15 +1,14 @@
 ### Date created
-Include the date you created this project and README file.
+12 February 2020
 
 ### Project Title
-Replace the Project Title
+Sharing of bikeshare project data
 
 ### Description
-Describe what your project is about and what it does
+This project is part of the Programming for data science using Python Nanodegree at Udacity
 
 ### Files used
-Include the files used
+bikeshare.py
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+https://www.udacity.com/
