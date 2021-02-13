@@ -92,7 +92,7 @@ def load_data(city, month, day):
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
-    print('\nCalculating The Most Frequent Times of Travel...\n')
+    print('\nCalculating frequent times of travel ...\n')
     start_time = time.time()
 
     # display the most common month
@@ -166,9 +166,9 @@ def user_stats(df, city):
         earliest = int(sorted(df.groupby(['Birth Year'])['Birth Year'])[0][0])
         recent = int(sorted(df.groupby(['Birth Year'])['Birth Year'], reverse=True)[0][0])
         common = int(df['Birth Year'].mode()[0])
-        print(earliest, "is the earliest year of birth")
-        print(recent, "is the most recent year of birth")
-        print(common, "is the most common year of birth")
+        print(earliest, "is the earliest year of birth for this city")
+        print(recent, "is the most recent year of birth for this city")
+        print(common, "is the most common year of birth for this city")
 
     print("\nThis took %s seconds to run." % (round(time.time() - start_time,4)))
 
@@ -185,7 +185,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df, city)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        restart = input('\nWould you like to restart? Enter Yes or No.\n')
         if restart.lower() != 'yes':
             break
 
