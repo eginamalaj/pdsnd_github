@@ -2,17 +2,22 @@
 """
 Created on Sat Jan  2 12:13:57 2021
 
-@author: Egina
+@author: Egina Malaj
+@contact: eginamalaj@gmail.com
 """
+
+# Packages that need to be imported
 import time
 import pandas as pd
 import numpy as np
 import calendar
 
+# Get data
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+# Functions
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -31,7 +36,7 @@ def get_filters():
         else:
             print("\nCity not in the list\n")
     # get user input for month (all, january, february, ... , june)
-    while True:    
+    while True:
         month = input("Please select month: January, Feburary, March, April, May or June or select All for all months - ")
         month = month.lower()
         if month in ['january', 'february', 'march', 'april', 'may', 'june', 'all']:
@@ -61,7 +66,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df = pd.read_csv(CITY_DATA[city])
-    
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     df['month'] = df['Start Time'].dt.month
@@ -71,14 +76,14 @@ def load_data(city, month, day):
     if month != 'all':
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
-    
-        
+
+
         df = df[df['month'] == month]
 
-    
+
     if day != 'all':
-        
-        
+
+
         df = df[df['day_of_week'] == day.title()]
 
     return df
@@ -101,7 +106,7 @@ def time_stats(df):
     # display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     print(df['hour'].mode()[0], "hrs is the most common start hour.")
-    
+
     print("\nThis took %s seconds to run." % (round(time.time() - start_time,4)))
     print('-'*40)
 
@@ -152,7 +157,7 @@ def user_stats(df, city):
     # Display counts of user types
     user_count = df.groupby(['User Type'])['User Type'].count()
     print(user_count, "\n")
-    
+
     if city != 'washington':
         # Display counts of gender
         gender = df.groupby(['Gender'])['Gender'].count()
@@ -166,10 +171,10 @@ def user_stats(df, city):
         print(common, "is the most common year of birth")
 
     print("\nThis took %s seconds to run." % (round(time.time() - start_time,4)))
-    
+
     print('-'*40)
 
-    
+
 def main():
     while True:
         city, month, day = get_filters()
